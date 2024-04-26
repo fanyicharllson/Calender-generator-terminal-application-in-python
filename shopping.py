@@ -129,7 +129,38 @@ def delete_good_from_file(file_path, good_to_delete):
     else:
         print("Goods deleted successfully.")
 
-
+def modify_good_in_newl_file():
+    file = input("Enter the name of the file: ")
+    directory = r"C:\Users\NTECH\OneDrive\Desktop\GENERAL FOLDER\project.py"
+    file_name = os.listdir(directory)
+    if file in file_name:
+        print(    "Valid file name!")
+        
+        with open(file, 'r') as doc:
+            files = doc.readlines()
+            
+        file_found = False
+        with open(file,'w') as doc:
+             old_product = input("Enter the formal product name: ")
+             new_good_name = input("Enter the new product name: ")
+             for line in files:
+                if old_product in line:
+                    modify_product = line.replace(old_product, new_good_name)
+                    doc.write(modify_product)
+                    file_found = True
+                
+                else:
+                    doc.write(line)
+        
+        if not file_found:
+            print("Goods were not found in the file")
+        
+        else:
+            print("Goods modified successfully")                  
+               
+    else:
+        print("Invalid product name")        
+            
 
 def modify_good_in_file(file_path, old_good_name, new_good_name):
     try:
@@ -307,18 +338,23 @@ elif product_number == 5:
      else:
          print("System error come back later! Thankyou")            
 elif product_number == 6:
-    directory = r"C:\Users\NTECH\OneDrive\Desktop\GENERAL FOLDER\project.py"
-    file = os.listdir(directory)
-    file_path = "main.txt"# Change this to your file path
-    if file_path in file:
+    choice = input("Do you want to modify your product in the main file or newly created file(y (main file) or n   (created file))? ").lower()
+    if choice == "y":
+        
+      directory = r"C:\Users\NTECH\OneDrive\Desktop\GENERAL FOLDER\project.py"
+      file = os.listdir(directory)
+      file_path = "main.txt"# Change this to your file path
+      if file_path in file:
         print("\n File found")
         old_good_name = input("Enter the name of the good to modify: ")
         new_good_name = input("Enter the new name for the good: ")
         modify_good_in_file(file_path, old_good_name, new_good_name)
     
-    else:
+      else:
         print("System error come back later! Thankyou")    
 
+    else:
+        modify_good_in_newl_file()
     
 elif product_number == 7:
     print() 
