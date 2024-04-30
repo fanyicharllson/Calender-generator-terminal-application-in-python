@@ -58,7 +58,7 @@ def mark_task():
                 return
             
             for index, line in enumerate(lines):
-                if index == task_index - 1:
+                if index == task_index - 1: #task index -1 because python reads from 0 
                     line = line.strip() + " [Read]\n"
                 file.write(line)
         
